@@ -50,9 +50,11 @@ while True:
     Details="Double Damage are given by the following type: \n"
     d_dmg_url=[]
     cn=0
+    tpp=tp
+    tp=[]
     for url in urls:
         poke_type=requests.get(url).json()
-        Details+="Double Damage for "+tp[cn]+" by: "
+        Details+="Double Damage for "+tpp[cn]+" by: "
         cn+=1
         for j in poke_type["damage_relations"]["double_damage_from"]:
             Details+=j["name"]+' '
@@ -63,6 +65,7 @@ while True:
     
     ######################################List 5 pokemon###################################################
     Details='List 5 pokemons which gives the given pokemon double damage:\n'
+    print(d_dmg_url)
     for i in range(len(d_dmg_url)):
         dat=requests.get(d_dmg_url[i]).json()
         Details+=("Pokemon of Type: "+tp[i]+'\n')
