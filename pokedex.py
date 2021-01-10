@@ -45,29 +45,20 @@ while True:
     window['-OUTPUT2-'].update(Details)
     
     ################################DOUBLE DAMAGE#########################################################
-    ddm=['','']
-    ddm[0]+=tp[0]
-    ddm[1]+=tp[1]
     
+
+    Details="Double Damage are given by the following type: \n"
     d_dmg_url=[]
-    tp=[]
-    ans1=[]
-    ans2=[]
     cn=0
     for url in urls:
         poke_type=requests.get(url).json()
+        Details+="Double Damage for "+tp[cn]+" by: "
+        cn+=1
         for j in poke_type["damage_relations"]["double_damage_from"]:
-            if not cn:
-                ans1.append(j["name"])
-            else:
-                ans2.append(j["name"])
+            Details+=j["name"]+' '
             tp.append(j["name"])
             d_dmg_url.append(j["url"])
-            cn+=1
-    Details=''
-    Details="Double Damage are given by the following type: \n"
-    Details+="For "+str(ddm[0])+" : "+str(ans1)+"\n"
-    Details+="For "+str(ddm[1])+" : "+str(ans2)+"\n"
+        Details+='\n'
     window['-OUTPUT3-'].update(Details)
     
     ######################################List 5 pokemon###################################################
